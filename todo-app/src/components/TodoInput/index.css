@@ -1,4 +1,10 @@
+.todo-input__container {
+  display: flex;
+  align-items: center;
+}
 .todo-input__field {
   width: 30rem;
   height: 2rem;
+  font-size: 1.1rem;
+  padding-left: 0.5rem;
 }
