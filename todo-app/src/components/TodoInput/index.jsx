@@ -8,7 +8,10 @@ export const TodoInput = ({ onHandleAddTodo }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // enviaar o setear el vlor actual a la lista
-    onHandleAddTodo(inputValue);
+    // no agregar lista vacias
+    const inputValueWithoutSpaces = inputValue.trim();
+    if (inputValueWithoutSpaces === "") return;
+    onHandleAddTodo(inputValueWithoutSpaces);
     // limpia el input despues de guadar la task
     setInputValue("");
   };
