@@ -6,11 +6,15 @@ import "./App.css";
 function App() {
   const [todos, setTodos] = useState([]);
 
+  const handleAddTodo = (newTodo) => {
+    setTodos([...todos, newTodo]);
+  };
+
   return (
     <>
       <h1>Todo List</h1>
       <section className="">
-        <TodoInput setTodos={setTodos} />
+        <TodoInput onHandleAddTodo={handleAddTodo} />
       </section>
       <section className="todo-list__section">
         <TodoList todos={todos} />
