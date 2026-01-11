@@ -15,7 +15,20 @@ function App() {
   };
 
   const handleDeleteTodo = (id) => {
-    const newTodoList = todos.filter((todo) => todo.id !== id);
+    const newTodoList = todos.filter((todo) => {
+      return todo.id !== id;
+    });
+    setTodos(newTodoList);
+  };
+
+  const handleEditTodo = (id, inputEditValue) => {
+    const newTodoList = todos.map((todo) => {
+      if (todo.id === id) {
+        const newTodoEdit = { ...todo, text: inputEditValue };
+        return newTodoEdit;
+      }
+      return todo;
+    });
     setTodos(newTodoList);
   };
 
@@ -26,7 +39,11 @@ function App() {
         <TodoInput onHandleAddTodo={handleAddTodo} />
       </section>
       <section className="todo-list__section">
-        <TodoList todos={todos} onHandleDeleteTodo={handleDeleteTodo} />
+        <TodoList
+          todos={todos}
+          onHandleDeleteTodo={handleDeleteTodo}
+          onHandleEditTodo={handleEditTodo}
+        />
       </section>
     </>
   );

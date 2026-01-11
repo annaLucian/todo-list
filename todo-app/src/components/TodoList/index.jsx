@@ -1,7 +1,7 @@
 import { TodoItem } from "./TodoItem";
 import "./index.css";
 
-export const TodoList = ({ todos, onHandleDeleteTodo }) => {
+export const TodoList = ({ todos, onHandleDeleteTodo, onHandleEditTodo }) => {
   return (
     <ul className="todo-list">
       {todos.map((todo) => (
@@ -9,6 +9,7 @@ export const TodoList = ({ todos, onHandleDeleteTodo }) => {
           todo={todo}
           key={`todoItem-${todo.id}`}
           onHandleDeleteTodo={onHandleDeleteTodo}
+          onHandleEditTodo={onHandleEditTodo}
         />
       ))}
     </ul>
