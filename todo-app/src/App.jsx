@@ -10,6 +10,7 @@ function App() {
     const newTodo = {
       id: crypto.randomUUID(),
       text: todoName,
+      completed: false,
     };
     setTodos([...todos, newTodo]);
   };
@@ -32,6 +33,17 @@ function App() {
     setTodos(newTodoList);
   };
 
+  const handleCompletedTodo = (id) => {
+    const newTodosList = todos.map((todo) => {
+      if (todo.id === id) {
+        const newTodoCompleted = { ...todo, completed: !todo.completed };
+        return newTodoCompleted;
+      }
+      return todo;
+    });
+    setTodos(newTodosList);
+  };
+
   return (
     <>
       <h1>Todo List</h1>
@@ -43,6 +55,7 @@ function App() {
           todos={todos}
           onHandleDeleteTodo={handleDeleteTodo}
           onHandleEditTodo={handleEditTodo}
+          onHandleCompletedTodo={handleCompletedTodo}
         />
       </section>
     </>

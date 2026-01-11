@@ -7,3 +7,11 @@
 .todo-list__item {
   padding: 0.2rem 0;
 }
+
+.todo-list__itemText {
+  display: inline-block;
+}
+
+.todo-list__itemText--completed {
+  text-decoration: line-through;
+}
