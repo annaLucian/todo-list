@@ -6,7 +6,11 @@ import "./App.css";
 function App() {
   const [todos, setTodos] = useState([]);
 
-  const handleAddTodo = (newTodo) => {
+  const handleAddTodo = (todoName) => {
+    const newTodo = {
+      id: crypto.randomUUID(),
+      text: todoName,
+    };
     setTodos([...todos, newTodo]);
   };
 
