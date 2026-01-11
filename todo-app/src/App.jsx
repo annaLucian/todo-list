@@ -14,6 +14,11 @@ function App() {
     setTodos([...todos, newTodo]);
   };
 
+  const handleDeleteTodo = (id) => {
+    const newTodoList = todos.filter((todo) => todo.id !== id);
+    setTodos(newTodoList);
+  };
+
   return (
     <>
       <h1>Todo List</h1>
@@ -21,7 +26,7 @@ function App() {
         <TodoInput onHandleAddTodo={handleAddTodo} />
       </section>
       <section className="todo-list__section">
-        <TodoList todos={todos} />
+        <TodoList todos={todos} onHandleDeleteTodo={handleDeleteTodo} />
       </section>
     </>
   );
