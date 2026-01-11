@@ -5,14 +5,17 @@ import { TodoInputButton } from "./TodoInputButton";
 export const TodoInput = ({ onHandleAddTodo }) => {
   const [inputValue, setInputValue] = useState("");
 
+  const cleanInputWhiteSpaces = (inputValue) => {
+    return inputValue.trim();
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // enviaar o setear el vlor actual a la lista
-    // no agregar lista vacias
-    const inputValueWithoutSpaces = inputValue.trim();
-    if (inputValueWithoutSpaces === "") return;
-    onHandleAddTodo(inputValueWithoutSpaces);
-    // limpia el input despues de guadar la task
+
+    const inputWitNoSpaces = cleanInputWhiteSpaces(inputValue);
+    if (inputWitNoSpaces === "") return;
+    onHandleAddTodo(inputWitNoSpaces);
+
     setInputValue("");
   };
 
