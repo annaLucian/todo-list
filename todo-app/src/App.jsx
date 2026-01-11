@@ -21,6 +21,17 @@ const removeTodoLocalStorage = (id) => {
   saveTodosLocalStorage(newTodos);
 };
 
+const updateTodoLocalStorage = (id, inputEditValue) => {
+  const todosFromLocalStorage = getTodosFromlocalStorage();
+  const newTodos = todosFromLocalStorage.map((todo) => {
+    if (todo.id === id) {
+      return { ...todo, text: inputEditValue };
+    }
+    return todo;
+  });
+  saveTodosLocalStorage(newTodos);
+};
+
 function App() {
   const [todos, setTodos] = useState(() => getTodosFromlocalStorage());
 
@@ -53,6 +64,7 @@ function App() {
       return todo;
     });
     setTodos(newTodoList);
+    updateTodoLocalStorage(id, inputEditValue);
   };
 
   const handleCompletedTodo = (id) => {
