@@ -2,11 +2,15 @@ import "./index.css";
 import { useState } from "react";
 import { TodoInputButton } from "./TodoInputButton";
 
-export const TodoInput = () => {
+export const TodoInput = ({ setTodos }) => {
   const [inputValue, setInputValue] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // enviaar o setear el vlor actual a la lista
+    setTodos((prev) => [...prev, inputValue]);
+    // limpia el input despues de guadar la task
+    setInputValue("");
   };
 
   return (

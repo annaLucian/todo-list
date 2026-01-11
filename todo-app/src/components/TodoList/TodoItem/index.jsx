@@ -1,3 +1,3 @@
-export const TodoItem = () => {
-  return <li className="todo-list__item">hohohlsla</li>;
+export const TodoItem = ({ todo }) => {
+  return <li className="todo-list__item">{todo}</li>;
 };

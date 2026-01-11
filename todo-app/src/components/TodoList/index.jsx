@@ -1,13 +1,12 @@
-import "./index.css";
 import { TodoItem } from "./TodoItem";
+import "./index.css";
 
-export const TodoList = () => {
+export const TodoList = ({ todos }) => {
   return (
     <ul className="todo-list">
-      <TodoItem />
-      <TodoItem />
-      <TodoItem />
-      <TodoItem />
+      {todos?.map((todo, index) => (
+        <TodoItem todo={todo} key={`todoItem-${index}`} />
+      ))}
     </ul>
   );
 };
