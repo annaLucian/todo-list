@@ -11,6 +11,16 @@ const getTodosFromlocalStorage = () => {
   return tasks ? JSON.parse(tasks) : [];
 };
 
+const saveTodosLocalStorage = (newTodoList) => {
+  localStorage.setItem(KEY_TODO, JSON.stringify(newTodoList));
+};
+
+const removeTodoLocalStorage = (id) => {
+  const todosFromLocalStorage = getTodosFromlocalStorage();
+  const newTodos = todosFromLocalStorage.filter((todo) => todo.id !== id);
+  saveTodosLocalStorage(newTodos);
+};
+
 function App() {
   const [todos, setTodos] = useState(() => getTodosFromlocalStorage());
 
@@ -20,7 +30,10 @@ function App() {
       text: todoName,
       completed: false,
     };
-    setTodos([...todos, newTodo]);
+    const newTodoList = [...todos, newTodo];
+
+    setTodos(newTodoList);
+    saveTodosLocalStorage(newTodoList);
   };
 
   const handleDeleteTodo = (id) => {
@@ -28,6 +41,7 @@ function App() {
       return todo.id !== id;
     });
     setTodos(newTodoList);
+    removeTodoLocalStorage(id);
   };
 
   const handleEditTodo = (id, inputEditValue) => {
