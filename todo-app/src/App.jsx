@@ -3,8 +3,16 @@ import { TodoInput } from "./components/TodoInput";
 import { TodoList } from "./components/TodoList";
 import "./App.css";
 
+const KEY_TODO = "todoList";
+
+const getTodosFromlocalStorage = () => {
+  const tasks = localStorage.getItem(KEY_TODO);
+
+  return tasks ? JSON.parse(tasks) : [];
+};
+
 function App() {
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState(() => getTodosFromlocalStorage());
 
   const handleAddTodo = (todoName) => {
     const newTodo = {
