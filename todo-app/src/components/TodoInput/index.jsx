@@ -1,9 +1,11 @@
 import "./index.css";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { TodoContext } from "../Context/TodoContext";
 import { TodoInputButton } from "./TodoInputButton";
 
-export const TodoInput = ({ onHandleAddTodo }) => {
+export const TodoInput = () => {
   const [inputValue, setInputValue] = useState("");
+  const { handleAddTodo } = useContext(TodoContext);
 
   const cleanInputWhiteSpaces = (inputValue) => {
     return inputValue.trim();
@@ -14,7 +16,7 @@ export const TodoInput = ({ onHandleAddTodo }) => {
 
     const inputWitNoSpaces = cleanInputWhiteSpaces(inputValue);
     if (inputWitNoSpaces === "") return;
-    onHandleAddTodo(inputWitNoSpaces);
+    handleAddTodo(inputWitNoSpaces);
 
     setInputValue("");
   };

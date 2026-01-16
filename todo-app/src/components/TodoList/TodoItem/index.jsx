@@ -1,17 +1,16 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { TodoContext } from "../../Context/TodoContext";
 
-export const TodoItem = ({
-  todo,
-  onHandleDeleteTodo,
-  onHandleEditTodo,
-  onHandleCompletedTodo,
-}) => {
+export const TodoItem = ({ todo }) => {
   const [showEditInput, setShowEditInput] = useState(false);
   const [inputEditValue, setInputEditValue] = useState(todo.text);
 
+  const { handleEditTodo, handleDeleteTodo, handleCompletedTodo } =
+    useContext(TodoContext);
+
   const handleEdit = ({ todo, e }) => {
     e.preventDefault();
-    onHandleEditTodo(todo.id, inputEditValue);
+    handleEditTodo(todo.id, inputEditValue);
     setShowEditInput(false);
   };
 
@@ -25,12 +24,12 @@ export const TodoItem = ({
         >
           {todo.text}
         </p>
-        <button onClick={() => onHandleDeleteTodo(todo.id)}>X</button>
+        <button onClick={() => handleDeleteTodo(todo.id)}>X</button>
         <button onClick={() => setShowEditInput(true)}>Edit</button>
         <input
           type="checkbox"
           checked={todo.completed}
-          onChange={() => onHandleCompletedTodo(todo.id)}
+          onChange={() => handleCompletedTodo(todo.id)}
         />
       </li>
     );
