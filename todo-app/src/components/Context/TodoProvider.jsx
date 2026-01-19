@@ -1,4 +1,4 @@
-import { TodoContext } from "./TodoContext";
+import { TodoContext } from "./TodoContext.jsx";
 import { useState } from "react";
 import {
   getTodosFromlocalStorage,
