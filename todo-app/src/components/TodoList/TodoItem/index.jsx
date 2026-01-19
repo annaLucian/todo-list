@@ -10,6 +10,7 @@ export const TodoItem = ({ todo }) => {
 
   const handleEdit = ({ todo, e }) => {
     e.preventDefault();
+    if (inputEditValue.trim() === "") return;
     handleEditTodo(todo.id, inputEditValue);
     setShowEditInput(false);
   };
@@ -35,12 +36,23 @@ export const TodoItem = ({ todo }) => {
     );
 
   return (
-    <form onSubmit={(e) => handleEdit({ todo, e })}>
+    <form
+      style={{ display: "flex", alignContent: "center" }}
+      onSubmit={(e) => handleEdit({ todo, e })}
+    >
       <input
         value={inputEditValue}
         onChange={(e) => setInputEditValue(e.target.value)}
+        data-testid="input-edit"
+        style={{ height: "2rem" }}
       />
-      <button>Guardar</button>
+      {inputEditValue.trim() === "" ? (
+        <p style={{ color: "#f09595", fontSize: "1.2rem" }}>
+          try writting a task!!
+        </p>
+      ) : (
+        <button>AddTask</button>
+      )}
     </form>
   );
 };
